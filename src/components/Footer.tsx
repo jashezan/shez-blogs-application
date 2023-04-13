@@ -10,7 +10,7 @@ const Footer = () => {
         <Link href={'/'}>
           <div className='flex justify-center md:justify-start items-center cursor-pointer'>
             <Image src='https://icons.iconarchive.com/icons/microsoft/fluentui-emoji-3d/48/Alien-3d-icon.png' alt='icon' width={40} height={40} />
-            <span className='text-bold text-primary text-xl ml-2'>Shez Blogs</span>
+            <span className='text-bold text-primary text-xl ml-2 hover:text-primary-dark'>Shez Blogs</span>
           </div>
         </Link>
         <p className="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">
@@ -27,7 +27,7 @@ const Footer = () => {
           {socialMediaList.map((profile, index) => {
             return (
               <a href={profile.profilelink} target='_blank' rel='noreferrer noopener' key={index} className='p-2'>
-                <Image src={profile.logolink} alt={profile.name} width={40} height={40} />
+                <Image src={profile.logolink} alt={profile.name} width={30} height={30} />
               </a>
             )
           })}

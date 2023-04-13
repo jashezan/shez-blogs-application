@@ -2,8 +2,13 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['icons.iconarchive.com', 'cdn.jsdelivr.net']
-  }
-}
+    domains: [
+      "icons.iconarchive.com",
+      "cdn.jsdelivr.net",
+      "robohash.org",
+      "localhost",
+    ],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
