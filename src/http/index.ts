@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 const api = axios.create({
   baseURL: process.env.API_BASE_URL,
@@ -7,10 +7,12 @@ const api = axios.create({
   },
 });
 
-export const fetchCategories = async() => {
-  return api.get('/api/categories')
-}
+// Categories
+export const fetchCategories = async () => api.get('/api/categories?populate=*');
 
-export const fetchArticles = async(queryString:string = "") => {
-  return api.get(`/api/articles?${queryString}`)
-}
+// Articles
+export const fetchArticles = async (queryString: string) =>
+  api.get(`/api/articles?${queryString}&populate=*`);
+
+export const fetchArticleBySlug = async (queryString: string) =>
+  api.get(`/api/articles?${queryString}`);

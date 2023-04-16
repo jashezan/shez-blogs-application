@@ -1,37 +1,43 @@
-import { IArticle } from '@/types'
-import { formatDate } from '@/utils/formatDate'
-import Image from 'next/image'
-import Link from 'next/link'
-import React from 'react'
-
+import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
+import { IArticle } from '../types';
+import { formatDate } from '../utils';
 interface IPropType {
-  article: IArticle
+    article: IArticle;
 }
 
 const BlogCard = ({ article }: IPropType) => {
-  const AVATAR_URL = 'https://robohash.org/hicveldicta.png?size=50x50&set=set1' || `${process.env.API_BASE_URL}/${article.attributes.author?.data.attributes.avatar}`
-  return (
-    <div>
-      <Link href={article.attributes.slug}>
-        <h2 className='text-xl text-gray-600 font-bold capitalize hover:underline hover:cursor-pointer hover:decoration-primary'>{article.attributes.title}</h2>
-      </Link>
-      <div className='flex items-center my-4'>
-        <div className='rounded-lg flex items-center justify-center'>
-          <Image src={AVATAR_URL} alt='' width={50} height={50} />
-        </div>
-        <div className='text-md text-gray-600 text-justify'>{article.attributes.author?.data.attributes.firstname || 'Rajnikant'}</div>
-        <span className='text-sm'> 
-          &nbsp;
-          on
-          &nbsp;
-          {formatDate(article.attributes.publishedAt)}
-        </span>
-      </div>
-      <div className='text-sm text-gray-600'>
-        {article.attributes.body.substring(0,300)}...
-      </div>
-    </div>
-  )
-}
 
-export default BlogCard
+    return (
+        <div>
+            <Link href={`/article/${article.attributes.slug}`}>
+                <h1 className="text-xl text-gray-600 font-bold hover:decoration-2 hover:underline hover:cursor-pointer hover:decoration-primary">
+                    {article.attributes.title}
+                </h1>
+            </Link>
+            <div className="flex items-center my-4">
+                <div className="rounded-lg overflow-hidden flex items-center justify-center mr-2">
+                    <Image
+                        src={'https://robohash.org/hicveldicta.png?size=50x50&set=set1'}
+                        height={40}
+                        width={40}
+                        alt=''
+                    />
+                </div>
+                <span className="text-sm font-bold text-gray-600">
+                    {'Rajnikant'} on
+                    &nbsp;
+                    <span className="text-gray-400">
+                        {formatDate(article.attributes.createdAt)}
+                    </span>
+                </span>
+            </div>
+            <div className="text-gray-500">
+                {`${article?.attributes?.body}`.substring(0, 250)}...
+            </div>
+        </div>
+    );
+};
+
+export default BlogCard;
